@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: url(form5.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: black;
+        }
+
+        .container {
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+            background-image: url(form\ 4.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container header {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #004080, #001f40);
+        }
+
+        .form .input-box label {
+            color: black;
+        }
+
+        .form :where(.input-box input) {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            outline: none;
+            font-size: 1rem;
+            color: #333;
+            margin-top: 8px;
+            border: 1px solid #fff;
+            border-radius: 6px;
+            padding: 0 15px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .form .input-box input:focus {
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .form .column {
+            display: flex;
+            column-gap: 15px;
+        }
+
+        .form :where(.gender-option, .gender) {
+            display: flex;
+            align-items: center;
+            column-gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .gender-box h3 {
+            color: black;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .form .gender {
+            column-gap: 5px;
+        }
+
+        .gender label {
+            color: #707070;
+        }
+
+        .form button {
+            height: 55px;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(to right, #004080, #001f40);
+        }
+
+        .form button:hover {
+            background: linear-gradient(to right, #001f40, #004080);
+        }
+
+        @media screen and (max-width: 500px) {
+            .form .column {
+                flex-wrap: wrap;
+            }
+
+            .form :where(.gender-option, .gender) {
+                row-gap: 15px;
+            }
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1;
+        }
+
+        .popup button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn1 {
+            background: lime;
+            color: white;
+        }
+
+        .btn2 {
+            background: red;
+            color: white;
+        }
+    </style>
+    <script>
+        function openForm() {
+            if (validateForm()) {
+                document.getElementById("popup").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+            }
+        }
+
+        function closeForm() {
+            document.getElementById("popup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        function confirmRegistration() {
+            alert("Successfully Registered! ---> Close this Window");
+            closeForm();
+        }
+
+        function validateForm() {
+            var inputs = document.querySelectorAll('.form input[required]');
+            for (var i = 0; i < inputs.length; i++) {
+                if (!inputs[i].value.trim()) {
+                    alert("Please fill in all required fields.");
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <section class="container">
+        <header>Registration Form</header>
+        <form action="#" class="form">
+            <div class="input-box">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter Full Name" required />
+            </div>
+
+            <div class="input-box">
+                <label>Email Address</label>
+                <input type="text" placeholder="Enter Email Address" required />
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <input type="number" placeholder="Enter Phone Number" required />
+                </div>
+                <div class="input-box">
+                    <label>Birth Date</label>
+                    <input type="date" placeholder="Enter birth date" required />
+                </div>
+            </div>
+            <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input type="radio" id="check-male" name="gender" />
+                        <label for="check-male">Male</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" id="check-female" name="gender" />
+                        <label for="check-female">Female</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-box address">
+                <label>Address</label>
+                <input type="text" placeholder="Enter Current Street Address" required />
+                <input type="text" placeholder="Enter Second Street Address" required />
+                <div class="column">
+                    <input type="text" placeholder="Enter Your City" required />
+                    <input type="text" placeholder="Enter Your State" required />
+                </div>
+                <div class="column">
+                    <input type="text" placeholder="Enter Your Country" required />
+                    <input type="number" placeholder="Enter Postal Code" required />
+                </div>
+            </div>
+            <button type="button" onclick="openForm()">Submit</button>
+        </form>
+    </section>
+
+    <div id="popup" class="popup">
+        <button class="btn1" onclick="confirmRegistration()">Confirm</button>
+        <button class="btn2" onclick="closeForm()">Back</button>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+</body>
+
+</html>
